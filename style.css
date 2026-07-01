@@ -438,6 +438,11 @@ body {
 
 .form-response.hidden { display: none; }
 
+.form-response.error {
+  border-color: var(--pink);
+  background: rgba(255, 0, 255, 0.05);
+}
+
 /* FOOTER */
 .site-footer {
   text-align: center;

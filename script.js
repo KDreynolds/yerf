@@ -76,18 +76,48 @@ const responseMessages = [
   "Yerf has received your inquiry and has already begun QA. Your application is now displaying upside down. You're welcome.",
 ];
 
-function handleSubmit(event) {
+async function handleSubmit(event) {
   event.preventDefault();
+  const form = document.getElementById("contact-form");
   const response = document.getElementById("form-response");
-  if (!response) return;
+  if (!form || !response) return;
 
-  response.textContent = pick(responseMessages);
-  response.classList.remove("hidden");
+  const btn = form.querySelector("button[type='submit']");
+  if (btn) {
+    btn.disabled = true;
+    btn.textContent = "🦫 Yerf is receiving...";
+  }
+
+  try {
+    const res = await fetch(form.action, {
+      method: "POST",
+      body: new FormData(form),
+      headers: { Accept: "application/json" },
+    });
+
+    if (res.ok) {
+      response.textContent = pick(responseMessages);
+      response.classList.remove("hidden");
+      response.classList.add("success");
+      form.reset();
+      updateBudget(500);
+    } else {
+      response.textContent = "Yerf sneezed on the keyboard. Your message didn't go through. Try again?";
+      response.classList.remove("hidden");
+      response.classList.add("error");
+    }
+  } catch {
+    response.textContent = "Yerf fell asleep on the network cable. Please try again.";
+    response.classList.remove("hidden");
+    response.classList.add("error");
+  }
+
+  if (btn) {
+    btn.disabled = false;
+    btn.textContent = "🦫 Send to Yerf";
+  }
 
   response.scrollIntoView({ behavior: "smooth" });
-
-  document.getElementById("contact-form")?.reset();
-  updateBudget(500);
 }
 
 window.handleSubmit = handleSubmit;
@@ -221,6 +251,7 @@ document.addEventListener("keydown", (e) => {
 });
 
 // ── INIT ──
+document.getElementById("contact-form")?.addEventListener("submit", handleSubmit);
 console.log(
   "%c🦫 YERF'S QA %c— %cYou really shouldn't be looking here.%c But since you are: %cs q e a k%c",
   "font-size: 20px; font-weight: bold;",
