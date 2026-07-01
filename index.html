@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YERF'S QA — Quality Assurance by a Capybara</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<marquee class="top-marquee" scrollamount="13">
+  🦫 YERF IS WATCHING YOUR PULL REQUESTS 🦫 YERF IS WATCHING YOUR PULL REQUESTS 🦫 YERF IS WATCHING YOUR PULL REQUESTS 🦫
+</marquee>
+
+<header class="site-header">
+  <div class="logo glitch" data-text="YERF'S QA">YERF'S QA</div>
+  <p class="tagline">
+    <span class="spin">Q</span>uality <span class="bounce">A</span>ssurance by a <span class="capy-highlight">Capybara</span>. <span class="blink">What could go wrong?</span>
+  </p>
+</header>
+
+<nav class="chaos-nav">
+  <a href="#about">🐹 About Yerf</a>
+  <a href="#services">🔨 Services</a>
+  <a href="#testimonials">💬 Testimonials</a>
+  <a href="#contact">📬 Hire Yerf</a>
+  <button class="chaos-btn" onclick="activateChaos()" title="Maximum Chaos">🔥 MAXIMUM CHAOS</button>
+</nav>
+
+<main>
+
+<!-- ABOUT -->
+<section id="about" class="section">
+  <h2 class="section-title tilted">🐹 Who Is Yerf?</h2>
+  <div class="about-content">
+    <pre class="ascii-art">
+  ╱▔▔▔▔▔▔▔▔╲
+ ╱          ╲
+╱  ◉    ◉  ╲
+▏    ▃      ▕
+▏  ╲____╱   ▕
+╲          ╱
+ ╲╲______╱╱
+    </pre>
+    <div class="about-text">
+      <p>Yerf is a <strong>Capybara</strong> (Hydrochoerus hydrochaeris) with an inexplicable passion for <span class="glitch" data-text="breaking software">breaking software</span>. Born in the wetlands of the Pantanal, Yerf discovered their true calling after accidentally sitting on a keyboard and submitting a critical bug report to Oracle in 2018. The rest is history.</p>
+      <p>Yerf holds <strong>zero</strong> certifications, has <strong>never</strong> read the ISTQB syllabus, and tests mostly by <em>vibes</em>. Results have been described as <span class="rainbow-text">"statistically improbable."</span></p>
+      <p><strong>Current status:</strong> <span id="status-text">Soaking in a hot spring, thinking about edge cases</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="section">
+  <h2 class="section-title upside-down">🔨 What Yerf Does (Allegedly)</h2>
+  <div class="services-grid">
+    <div class="service-card">
+      <h3>🦷 Gnaw-Based Testing</h3>
+      <p>Yerf will physically gnaw on your keyboard until bugs reveal themselves. 73% success rate. Keyboards not included in warranty.</p>
+      <span class="price">$50/hr + cost of replacement keyboard</span>
+    </div>
+    <div class="service-card">
+      <h3>🛁 Thermal Regression</h3>
+      <p>Your application is tested while Yerf sits in increasingly warm water. If the app crashes before Yerf gets uncomfortable, it passes.</p>
+      <span class="price">$75/hr (hot water surcharge may apply)</span>
+    </div>
+    <div class="service-card">
+      <h3>🐾 Stomp-Driven Fuzzing</h3>
+      <p>Yerf walks across your keyboard with intent. The resulting input sequences have discovered vulnerabilities in three major JavaScript frameworks.</p>
+      <span class="price">$100/hr or 1 sack of sweet potatoes</span>
+    </div>
+    <div class="service-card">
+      <h3>😴 Nap-Time Monitoring</h3>
+      <p>Yerf naps near your production servers. If Yerf wakes up, something is wrong. Correlation is not causation, but Yerf disagrees.</p>
+      <span class="price">$200/hr (mostly napping)</span>
+    </div>
+    <div class="service-card">
+      <h3>🐹 Capybara Code Review</h3>
+      <p>Your PR receives a single review comment: "sqeak." Interpretations vary. Results have been upheld in court.</p>
+      <span class="price">$30 per "sqeak"</span>
+    </div>
+    <div class="service-card">
+      <h3>🌿 Forage-Based UAT</h3>
+      <p>User Acceptance Testing conducted while Yerf forages for aquatic plants. If Yerf can complete the user journey between bites of water hyacinth, it ships.</p>
+      <span class="price">$150/hr (seasonal, plant-dependent)</span>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials" class="section">
+  <h2 class="section-title glitch" data-text="Testimonials">💬 Testimonials</h2>
+  <div class="testimonial-carousel">
+    <div class="testimonial active">
+      <blockquote>"Kyle is a team player and an asset to any project! He has a can do attitude and loves to help wherever needed. He'll go above and beyond and knows how to bring people together to drive a positive outcome. You can count on Kyle to deliver!"</blockquote>
+      <cite>— Annie Rizzo, Director</cite>
+    </div>
+    <div class="testimonial">
+      <blockquote>"Kyle is a team player and an asset to any project! He has a can do attitude and loves to help wherever needed. He'll go above and beyond and knows how to bring people together to drive a positive outcome. You can count on Kyle to deliver!"</blockquote>
+      <cite>— Keawa Rozet, Software Engineer @ Figure</cite>
+    </div>
+    <div class="testimonial">
+      <blockquote>"I had the absolute pleasure of working with Kyle during our time together at Figure. It's rare to come across someone as remarkably dependable and consistent in delivering quality work as Kyle. His keen eye for detail and curious nature were the perfect recipe to give us confidence that our code would be deployed having gone through rigorous testing. I am truly inspired by his work ethic and drive and I cannot wait for the day that he and I will be able to work together again in the future. Do yourself a favor and do not pass on Kyle Reynolds!"</blockquote>
+      <cite>— LinkedIn Recommendation</cite>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+  <h2 class="section-title spin-slow">📬 Hire Yerf</h2>
+  <p class="contact-intro">Fill out this form. Yerf may or may not respond. It depends on nap schedules, snack availability, and the phase of the moon.</p>
+  <form id="contact-form" class="contact-form" onsubmit="handleSubmit(event)">
+    <div class="form-group">
+      <label for="name">Your Name (required, probably)</label>
+      <input type="text" id="name" name="name" placeholder="e.g. Human McHumanface" required>
+    </div>
+    <div class="form-group">
+      <label for="email">Email (capybara-friendly format preferred)</label>
+      <input type="email" id="email" name="email" placeholder="you@notacapybara.com">
+    </div>
+    <div class="form-group">
+      <label for="bugdet">Bug Budget ($)</label>
+      <input type="range" id="bugdet" name="bugdet" min="0" max="10000" value="500" oninput="updateBudget(this.value)">
+      <span id="budget-display">$500</span> — <span id="budget-message">Modest bug budget</span>
+    </div>
+    <div class="form-group">
+      <label for="message">What do you need Yerf to QA?</label>
+      <textarea id="message" name="message" rows="4" placeholder="Describe your software, its deepest fears, and whether you have snacks..." required></textarea>
+    </div>
+    <div class="form-group checkbox-group">
+      <input type="checkbox" id="terms" name="terms" required>
+      <label for="terms">I acknowledge that Yerf is a capybara and cannot be held legally responsible for anything at all</label>
+    </div>
+    <button type="submit" class="chaos-btn big-btn">🦫 Send to Yerf</button>
+  </form>
+  <div id="form-response" class="form-response hidden"></div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <marquee scrollamount="5" direction="right">
+    🦫 © 2024 YERF'S QA — NO RIGHTS RESERVED — TERMS & CONDITIONS: LMAO — PRIVACY POLICY: YERF KNOWS ALL — 
+  </marquee>
+  <div class="footer-content">
+    <p>Built with 🦫 and questionable life choices</p>
+    <p>Certified by absolutely nobody | ISO 0.001 Compliant | SOC 2 Type LOL</p>
+    <p class="tiny">* Yerf is not a registered business entity. Yerf is a capybara.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
