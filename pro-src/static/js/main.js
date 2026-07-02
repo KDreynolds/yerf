@@ -80,10 +80,32 @@
 		}
 
 		if (fsId) {
-			window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
-			formspree("initForm", { formElement: "#contact-form", formId: fsId });
-			contactForm.addEventListener("formspree:success", function () {
-				showSuccess();
+			contactForm.addEventListener("submit", function (e) {
+				e.preventDefault();
+				var btn = contactForm.querySelector("button[type=submit]");
+				if (btn) {
+					btn.disabled = true;
+					btn.textContent = "Sending...";
+				}
+				fetch("https://formspree.io/f/" + fsId, {
+					method: "POST",
+					body: new FormData(contactForm),
+					headers: { Accept: "application/json" },
+				})
+					.then(function (resp) {
+						if (resp.ok) {
+							showSuccess();
+						} else {
+							throw new Error("Form error");
+						}
+					})
+					.catch(function () {
+						if (btn) {
+							btn.disabled = false;
+							btn.textContent = "Send Message";
+						}
+						alert("Something went wrong. Please try again or email me directly at kylereynoldsdev@gmail.com.");
+					});
 			});
 		} else if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
 			var btn = contactForm.querySelector("button[type=submit]");
