@@ -1,10 +1,10 @@
 .PHONY: build-local build-prod generate serve clean dev
 
 build-local: generate
-	go run ./cmd/generate/ --base-path /pro/
+	FORMSPREE_FORM_ID=xyyrzdon go run ./cmd/generate/ --base-path /pro/
 
 build-prod: generate
-	go run ./cmd/generate/ --base-path /yerf/pro/
+	FORMSPREE_FORM_ID=xyyrzdon go run ./cmd/generate/ --base-path /yerf/pro/
 
 generate:
 	templ generate
