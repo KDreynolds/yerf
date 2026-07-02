@@ -65,13 +65,17 @@
 		}
 	})();
 
-	/* ---- Contact form ---- */
-	var contactForm = document.getElementById("contact-form");
-	if (contactForm) {
-		var fsId = contactForm.dataset.formspree;
+	/* ---- Contact form (delegated, survives HTMX nav) ---- */
+	document.addEventListener("submit", function (e) {
+		var form = e.target.closest("#contact-form");
+		if (!form) return;
+
+		e.preventDefault();
+		var fsId = form.dataset.formspree;
+		var btn = form.querySelector("button[type=submit]");
 
 		function showSuccess() {
-			contactForm.outerHTML =
+			form.outerHTML =
 				'<div id="contact-form" class="form-success">' +
 				'<div class="check">&#10003;</div>' +
 				"<h3>Message sent!</h3>" +
@@ -80,67 +84,56 @@
 		}
 
 		if (fsId) {
-			contactForm.addEventListener("submit", function (e) {
-				e.preventDefault();
-				var btn = contactForm.querySelector("button[type=submit]");
-				if (btn) {
-					btn.disabled = true;
-					btn.textContent = "Sending...";
-				}
-				fetch("https://formspree.io/f/" + fsId, {
-					method: "POST",
-					body: new FormData(contactForm),
-					headers: { Accept: "application/json" },
+			if (btn) {
+				btn.disabled = true;
+				btn.textContent = "Sending...";
+			}
+			fetch("https://formspree.io/f/" + fsId, {
+				method: "POST",
+				body: new FormData(form),
+				headers: { Accept: "application/json" },
+			})
+				.then(function (resp) {
+					if (resp.ok) {
+						showSuccess();
+					} else {
+						throw new Error("Form error");
+					}
 				})
-					.then(function (resp) {
-						if (resp.ok) {
-							showSuccess();
-						} else {
-							throw new Error("Form error");
-						}
-					})
-					.catch(function () {
-						if (btn) {
-							btn.disabled = false;
-							btn.textContent = "Send Message";
-						}
-						alert("Something went wrong. Please try again or email me directly at kylereynoldsdev@gmail.com.");
-					});
-			});
+				.catch(function () {
+					if (btn) {
+						btn.disabled = false;
+						btn.textContent = "Send Message";
+					}
+					alert("Something went wrong. Please try again or email me directly at kylereynoldsdev@gmail.com.");
+				});
 		} else if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
-			var btn = contactForm.querySelector("button[type=submit]");
-			contactForm.addEventListener("submit", function (e) {
-				e.preventDefault();
-				if (btn) {
-					btn.disabled = true;
-					btn.textContent = "Sending...";
-				}
-				fetch("/contact", {
-					method: "POST",
-					body: new FormData(contactForm),
+			if (btn) {
+				btn.disabled = true;
+				btn.textContent = "Sending...";
+			}
+			fetch("/contact", {
+				method: "POST",
+				body: new FormData(form),
+			})
+				.then(function (resp) {
+					if (resp.ok) return resp.text();
+					throw new Error("Server error");
 				})
-					.then(function (resp) {
-						if (resp.ok) return resp.text();
-						throw new Error("Server error");
-					})
-					.then(function (html) {
-						contactForm.outerHTML = html;
-					})
-					.catch(function () {
-						if (btn) {
-							btn.disabled = false;
-							btn.textContent = "Send Message";
-						}
-						alert("Something went wrong. Please try again.");
-					});
-			});
+				.then(function (html) {
+					form.outerHTML = html;
+				})
+				.catch(function () {
+					if (btn) {
+						btn.disabled = false;
+						btn.textContent = "Send Message";
+					}
+					alert("Something went wrong. Please try again.");
+				});
 		} else {
-			contactForm.addEventListener("submit", function (e) {
-				e.preventDefault();
-				alert("Contact form not configured. Please email me directly at kylereynoldsdev@gmail.com.");
-			});
+			alert("Contact form not configured. Please email me directly at kylereynoldsdev@gmail.com.");
 		}
-	}
+	});
 
 	/* ---- Active nav link on HTMX navigation ---- */
 	function updateActiveNav() {
