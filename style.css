@@ -190,6 +190,18 @@ body {
   transform: scale(0.9) rotate(-5deg);
 }
 
+.mode-toggle {
+  color: var(--bg) !important;
+  text-decoration: none !important;
+  font-family: 'Comic Neue', cursive !important;
+  font-weight: 700 !important;
+  text-transform: none !important;
+  background: var(--green) !important;
+}
+.mode-toggle:hover {
+  background: var(--yellow) !important;
+}
+
 .big-btn {
   font-size: 14px;
   padding: 16px 32px;
